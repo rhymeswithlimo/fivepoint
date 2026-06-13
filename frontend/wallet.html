@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainy Day - Fivepoint</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="wallet-styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="body-flex">
+
+    <section class="balance">
+        <p style="color: var(--muted);">Your Balance is</p>
+        <div class="balance-counter">
+            <h1 id="balance-text">$9,933.87</h1>
+            <a href="" class="full-rounded" id="transferBtn">Transfer Funds</a>
+        </div>
+    </section>
+
+    <section class="wallet">
+        <div class="wallet-container">
+            <div class="wallet-card">
+                <div class="wallet-card-top">
+                    <div class="wallet-card-top-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0e0e0e" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"></path></svg>
+                    </div>
+                    <button class="wallet-card-copy-address monospace unselectable">0x09f5••••3f4c<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0e0e0e" viewBox="0 0 256 256"><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"></path></svg></button>
+                </div>
+                <div class="wallet-card-bottom unselectable">
+                    <div class="wallet-card-info">
+                        <h3>Rainy Day</h3>
+                        <p style="color: hsl(from var(--contrast) h s l / 0.64); font-size: 15px;" class="monospace">0.12 BTC</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="requests">
+        <div class="requests-container">
+            <div class="request">
+                <div class="request-info">
+                    <p>From: Tom</p>
+                    <p>Requested 0.012 BTC ($781)</p>
+                </div>
+                <div class="request-info">
+                    <p style="color: var(--muted);">Note: &quot;hospital bills&quot;</p>
+                    <p style="color: var(--muted);">Expires in 07:13:24:10</p>
+                </div>
+                <div class="request-response unselectable">
+                    <button style="color: var(--green);">[accept]</button>
+                    <button style="color: var(--red);">[decline]</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="holdings">
+        <div class="holdings-header">
+            <div>
+                <h2 style="font-weight: 500;">Holdings</h2>
+                <p class="monospace increase unselectable">↑ +1.83% <span style="color: var(--muted);">($121.12)</span></p>
+            </div>
+            <div class="switcher" id="sw1">
+                <div class="switcher-slider" id="sw1-slider"></div>
+                <button class="switcher-btn active monospace" onclick="select(this, 'sw1')">1d</button>
+                <button class="switcher-btn monospace" onclick="select(this, 'sw1')">1w</button>
+                <button class="switcher-btn monospace" onclick="select(this, 'sw1')">1m</button>
+                <button class="switcher-btn monospace" onclick="select(this, 'sw1')">1y</button>
+            </div>
+        </div>
+        <div class="holdings-assets">
+            <div class="asset unselectable">
+                <div class="asset-info">
+                    <p>BTC</p>
+                    <p>$7696.17</p>
+                </div>
+                <div class="asset-info">
+                    <p class="increase">+1.72%</p>
+                    <p style="color: var(--muted);">0.12 BTC</p>
+                </div>
+            </div>
+            <div class="asset unselectable">
+                <div class="asset-info">
+                    <p>SOL</p>
+                    <p>$1579.18</p>
+                </div>
+                <div class="asset-info">
+                    <p class="increase">+1.32%</p>
+                    <p style="color: var(--muted);">23.21 SOL</p>
+                </div>
+            </div>
+            <div class="asset unselectable">
+                <div class="asset-info">
+                    <p>ETH</p>
+                    <p>$335.30</p>
+                </div>
+                <div class="asset-info">
+                    <p class="increase">+0.81%</p>
+                    <p style="color: var(--muted);">0.2 ETH</p>
+                </div>
+            </div>
+            <div class="asset unselectable">
+                <div class="asset-info">
+                    <p>USDC</p>
+                    <p>$223.18</p>
+                </div>
+                <div class="asset-info">
+                    <p class="neutral">+0.00%</p>
+                    <p style="color: var(--muted);">223.18 USDC</p>
+                </div>
+            </div>
+            <div class="asset unselectable">
+                <div class="asset-info">
+                    <p>XRP</p>
+                    <p>$100.04</p>
+                </div>
+                <div class="asset-info">
+                    <p class="decrease">-1.79%</p>
+                    <p style="color: var(--muted);">87.20 XRP</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="history">
+        <h2 style="font-weight: 500;">Latest Transactions</h2>
+        <div class="transactions-container">
+            <div class="transaction">
+                <div class="transaction-timestamp">
+                    <p>→ 12 Jun, 13:09</p>
+                    <p>[processing]</p>
+                </div>
+                <div class="transaction-info">
+                    <p style="display: flex;">Sent: <span style="margin-left: auto; color: var(--muted);">To: Lizzy</span></p>
+                    <p>2.1 ETH ($3522.82)</p>
+                </div>
+            </div>
+            <div class="transaction">
+                <div class="transaction-timestamp">
+                    <p>→ 21 May, 23:11</p>
+                </div>
+                <div class="transaction-info">
+                    <p style="display: flex;">Swapped:</p>
+                    <p>0.05 BTC -> 47.15 SOL</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multi-button switcher script -->
+    <script>
+        const PADDING = 4;
+
+        function snapSlider(switcherId) {
+            const sw = document.getElementById(switcherId);
+            const slider = document.getElementById(switcherId + '-slider');
+            const active = sw.querySelector('.switcher-btn.active');
+            if (!active) return;
+
+            slider.style.transition = 'none';
+            slider.style.width = active.offsetWidth + 'px';
+            slider.style.transform = 'translateX(' + (active.offsetLeft - PADDING) + 'px)';
+        }
+
+        function updateSlider(switcherId) {
+            const sw = document.getElementById(switcherId);
+            const slider = document.getElementById(switcherId + '-slider');
+            const active = sw.querySelector('.switcher-btn.active');
+            if (!active) return;
+
+            slider.style.transition = 'none';
+            slider.style.width = active.offsetWidth + 'px';
+
+            requestAnimationFrame(() => {
+                slider.style.transition = '';
+                slider.style.transform = 'translateX(' + (active.offsetLeft - PADDING) + 'px)';
+            });
+        }
+
+        function select(btn, switcherId) {
+            const sw = document.getElementById(switcherId);
+            sw.querySelectorAll('.switcher-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateSlider(switcherId);
+        }
+
+        let isResizing = false;
+        window.addEventListener('resize', () => {
+            ['sw1', 'sw2'].forEach(id => snapSlider(id));
+        });
+
+        ['sw1', 'sw2'].forEach(id => snapSlider(id));
+    </script>
+
+    <!-- Transfer button switch to SVG icon when < 360px -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn = document.getElementById("transferBtn");
+
+            const originalText = "Transfer Funds";
+            const icon = `
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    fill="#0e0e0e"
+                    viewBox="0 0 256 256"
+                    aria-label="Transfer Funds">
+                    <path d="M213.66,181.66l-32,32a8,8,0,0,1-11.32-11.32L188.69,184H48a8,8,0,0,1,0-16H188.69l-18.35-18.34a8,8,0,0,1,11.32-11.32l32,32A8,8,0,0,1,213.66,181.66Zm-139.32-64a8,8,0,0,0,11.32-11.32L67.31,88H208a8,8,0,0,0,0-16H67.31L85.66,53.66A8,8,0,0,0,74.34,42.34l-32,32a8,8,0,0,0,0,11.32Z"></path>
+                </svg>
+            `;
+
+            function updateButton() {
+                if (window.innerWidth < 360) {
+                    btn.innerHTML = icon;
+                } else {
+                    btn.textContent = originalText;
+                }
+            }
+
+            updateButton(); // Run on page load
+            window.addEventListener("resize", updateButton); // Update on resize
+        });
+    </script>
+
+    <!-- Scramble balance-text on reload -->
+    <script>
+        const STATIC_CHARS = new Set(['$', ',', '.', ' ']);
+        const SCRAMBLE_POOL = '0123456789&%^#@!kxzqw*';
+
+        function decode(el, duration = 1000) {
+        const finalText = el.dataset.original || el.textContent;
+        el.dataset.original = finalText;
+        const steps = 20;
+        const interval = duration / steps;
+        let frame = 0;
+
+        const tick = setInterval(() => {
+            frame++;
+            const revealedUpTo = Math.floor((frame / steps) * finalText.length);
+            let display = '';
+            for (let i = 0; i < finalText.length; i++) {
+            const ch = finalText[i];
+            if (i < revealedUpTo || STATIC_CHARS.has(ch)) {
+                display += ch;
+            } else {
+                display += SCRAMBLE_POOL[Math.floor(Math.random() * SCRAMBLE_POOL.length)];
+            }
+            }
+            el.textContent = display;
+            if (frame >= steps) {
+            clearInterval(tick);
+            el.textContent = finalText;
+            }
+        }, interval);
+        }
+
+        decode(document.getElementById('balance-text'));
+    </script>
+
+    <!-- Wallet card 3d tilt animations -->
+    <script>
+        (function () {
+        const card = document.querySelector('.wallet-card');
+
+        const REFLECTION_OPACITY  = 2;
+        const GLINT_OPACITY       = 0.18;
+        const GLINT_INTERVAL_MS   = 31000;
+        const GLINT_DURATION_MS   = 1400;
+        const IDLE_TRANSITION_MS  = 3600; // how long the ease-in to idle rotation takes
+
+        const MAX_TILT        = 2;
+        const TRANSITION_ON   = 'transform 0.1s ease-out';
+        const TRANSITION_OFF  = 'transform 0.6s ease-out';
+        const IDLE_TIMEOUT_MS = 120000;
+
+        let isHovered    = false;
+        let idleTimer    = null;
+        let idleRafId    = null;
+        let glintRafId   = null;
+
+        const reflection = document.createElement('div');
+        Object.assign(reflection.style, {
+            position: 'absolute', inset: '0', borderRadius: 'inherit',
+            pointerEvents: 'none', opacity: '0', transition: 'opacity 0.3s ease',
+            zIndex: '10', mixBlendMode: 'overlay',
+        });
+
+        const glint = document.createElement('div');
+        Object.assign(glint.style, {
+            position: 'absolute', inset: '0', borderRadius: 'inherit',
+            pointerEvents: 'none', opacity: '0', zIndex: '11',
+        });
+
+        card.style.position = 'relative';
+        card.style.overflow = 'hidden';
+        card.appendChild(reflection);
+        card.appendChild(glint);
+
+        function updateReflection(nx, ny, strength) {
+            const angle = Math.atan2(ny - 0.5, nx - 0.5) * 180 / Math.PI;
+            const intensity = Math.min(strength, 1) * REFLECTION_OPACITY;
+            reflection.style.background = `
+            radial-gradient(ellipse at ${nx * 100}% ${ny * 100}%,
+                rgba(255,255,255,${0.22 * intensity}) 0%,
+                rgba(255,255,255,${0.06 * intensity}) 40%,
+                transparent 70%),
+            linear-gradient(${angle + 90}deg,
+                rgba(255,255,255,${0.12 * intensity}) 0%,
+                transparent 60%)
+            `;
+            reflection.style.opacity = String(Math.max(0.1, intensity));
+        }
+
+        function runGlint() {
+            if (glintRafId) return;
+            const t0 = performance.now();
+            function tick(now) {
+            const progress = Math.min((now - t0) / GLINT_DURATION_MS, 1);
+            const eased = progress < 0.5
+                ? 2 * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+            const pos  = -30 + 160 * eased;
+            const bell = Math.sin(progress * Math.PI) * GLINT_OPACITY;
+            glint.style.background = `linear-gradient(
+                135deg,
+                transparent                      ${pos - 40}%,
+                rgba(255,255,255,${bell * 0.3})  ${pos - 20}%,
+                rgba(255,255,255,${bell})        ${pos}%,
+                rgba(255,255,255,${bell * 0.3})  ${pos + 20}%,
+                transparent                      ${pos + 40}%
+            )`;
+            glint.style.opacity = '1';
+            if (progress < 1) {
+                glintRafId = requestAnimationFrame(tick);
+            } else {
+                glintRafId = null;
+                glint.style.opacity = '0';
+            }
+            }
+            glintRafId = requestAnimationFrame(tick);
+        }
+
+        setInterval(runGlint, GLINT_INTERVAL_MS);
+
+        function startIdleAnimation() {
+            if (isHovered) return;
+            const startTime = performance.now();
+
+            function tick(now) {
+            if (isHovered) { stopIdleAnimation(); return; }
+            const elapsed = now - startTime;
+            const t = elapsed / 1000;
+
+            // Blend factor: 0 at start, 1 after IDLE_TRANSITION_MS
+            const blend = Math.min(elapsed / IDLE_TRANSITION_MS, 1);
+            // Ease in with a cubic curve
+            const eased = blend * blend * (3 - 2 * blend);
+
+            const rotY = Math.sin(t * 0.6) * 8  * eased;
+            const rotX = Math.sin(t * 0.4 + 1.0) * 5 * eased;
+
+            card.style.transition = 'transform 0.1s ease-out';
+            card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+            const nx = (rotY / 8 + 1) / 2;
+            const ny = (-rotX / 5 + 1) / 2;
+            updateReflection(nx, ny, Math.sqrt(rotY * rotY + rotX * rotX) / 9.4);
+
+            idleRafId = requestAnimationFrame(tick);
+            }
+
+            idleRafId = requestAnimationFrame(tick);
+        }
+
+        function stopIdleAnimation() {
+            if (idleRafId) { cancelAnimationFrame(idleRafId); idleRafId = null; }
+        }
+
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            stopIdleAnimation();
+            idleTimer = setTimeout(startIdleAnimation, IDLE_TIMEOUT_MS);
+        }
+
+        card.addEventListener('mouseenter', () => { isHovered = true; stopIdleAnimation(); resetIdleTimer(); });
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const nx = (e.clientX - rect.left) / rect.width;
+            const ny = (e.clientY - rect.top) / rect.height;
+            const cx = nx - 0.5;
+            const cy = ny - 0.5;
+            card.style.transition = TRANSITION_ON;
+            card.style.transform = `perspective(900px) rotateX(${-cy * 2 * MAX_TILT}deg) rotateY(${cx * 2 * MAX_TILT}deg)`;
+            updateReflection(nx, ny, Math.sqrt(cx * cx + cy * cy) * 1.414);
+        });
+
+        card.addEventListener('mouseleave', () => {
+            isHovered = false;
+            card.style.transition = TRANSITION_OFF;
+            card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
+            reflection.style.opacity = '0';
+            resetIdleTimer();
+        });
+
+        card.querySelectorAll('button').forEach(btn => btn.addEventListener('click', resetIdleTimer));
+
+        resetIdleTimer();
+        })();
+    </script>
+
+</body>
+</html>

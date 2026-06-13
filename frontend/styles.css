@@ -1,0 +1,168 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Geist', sans-serif;
+    background-color: var(--strong);
+    color: var(--contrast);
+
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    
+    scroll-behavior: smooth;
+
+    padding: 36px 0;
+}
+
+/* ====================DECLARE==================== */
+
+:root {
+    --strong: #050505;
+    --contrast: #FAFAFA;
+    --muted: #A0A0A0;
+
+    --green: #22C55E;
+    --red: #EF4444;
+    
+    --sidepadding: clamp(16px, 12.6848px + 0.884vw, 24px);
+    --lockedvw: 768px;
+}
+
+@font-face {
+    font-family: 'Geist';
+    src: url('assets/fonts/Geist[wght].woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geist Mono';
+    src: url('assets/fonts/GeistMono[wght].woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ====================BASIC CALLING==================== */
+
+a {
+    font-family: inherit;
+    font-weight: 450;
+    text-decoration: none;
+    color: inherit;
+
+    &:active { scale: .99; }
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--muted);
+    outline-offset: 3px;
+}
+
+input { all: unset; }
+button { all: unset; cursor: pointer; text-align: center; &:active { scale: .99; } }
+
+svg { fill: var(--contrast); margin: 0; padding: 0; box-sizing: border-box; height: fit-content; width: fit-content; }
+
+.monospace { font-family: 'Geist Mono', monospace; font-size: 14px; }
+
+section {
+    width: 100%;
+    max-width: var(--lockedvw);
+    padding: 0 var(--sidepadding);
+    margin: 0 auto;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.increase { color: var(--green); }
+.decrease { color: var(--red); }
+.neutral { color: var(--muted); }
+
+/* ====================BUTTON STYLING==================== */
+
+.full-rounded {
+    padding: 7px 14px;
+    border-radius: 50vw;
+
+    background-color: var(--contrast);
+    color: var(--strong);
+
+    font-size: 15px;
+    white-space: nowrap;
+
+    display: grid;
+    place-items: center;
+
+    opacity: 1;
+    transition: opacity .3s ease;
+
+    &:hover { opacity: .84; }
+    & svg { fill: var(--strong); width: 21px; }
+}
+
+.switcher {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+
+    background-color: hsl(from var(--contrast) h s l / 0.1);
+    border-radius: 6px;
+
+    padding: 4px;
+}
+
+.switcher-slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+
+    height: calc(100% - 8px);
+
+    background-color: var(--contrast);
+    box-shadow: 1px 1px 8px var(--strong);
+    border-radius: 6px;
+
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+.switcher-btn {
+    position: relative;
+    z-index: 1;
+
+    background: transparent;
+    color: var(--muted);
+
+    padding: 5px 12px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.switcher-btn.active {
+    color: var(--strong);
+    font-weight: 500;
+}

@@ -1,0 +1,234 @@
+
+.body-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* ====================BALANCE==================== */
+
+.balance-counter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+/* ====================WALLET==================== */
+
+.wallet-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: hsl(from var(--contrast) h s l / 0.1);
+
+    padding: clamp(0.5rem, -0.2143rem + 3.5714vw, 1.5rem);
+    border-radius: 8px;
+}
+
+.wallet-card {
+    width: 100%;
+    max-width: 430px;
+    aspect-ratio: 16 / 9;
+
+    border-radius: 16px;
+    padding: 16px;
+
+    background: linear-gradient(180deg,rgba(208, 36, 218, 1) 0%, rgba(0, 0, 0, 0.12) 100%);
+    background-color: #D024DA;
+    font-size: 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.wallet-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wallet-card-top-icon {
+    width: 38px; 
+    
+    & svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+.wallet-card-bottom {
+    margin-top: auto;
+}
+
+.wallet-card-copy-address {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    padding: 2px 4px;
+    background-color: transparent;
+    border-radius: 4px;
+
+    transition: background-color .2s ease;
+
+    & svg { width: 18px; }
+    &:active { scale: .99; }
+}
+
+.wallet-card-copy-address:hover { background-color: hsl(from var(--contrast) h s l / 0.16); }
+
+/* ====================HOLDINGS==================== */
+
+.holdings {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.holdings-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 12px;
+}
+
+@media (min-width: 480px) {
+    .holdings-header { flex-direction: row; justify-content: space-between; align-items: center; }
+}
+
+@media (max-width: 479px) {
+    .holdings-header .switcher { width: 100%; }
+    .holdings-header .switcher-btn { width: 100%; }
+}
+
+.holdings-change {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    
+    color: var(--green);
+
+    & svg { width: 24px; fill: var(--green); }
+}
+
+.holdings-assets {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+
+    padding: 12px;
+    border-radius: 8px;
+
+    background-color: hsl(from var(--contrast) h s l / 0.1);
+}
+
+@media (min-width: 480px) {
+    .holdings-assets { grid-template-columns: 1fr 1fr; }
+}
+
+.asset {
+    font-family: 'Geist Mono', monospace;
+    font-size: 14px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px; 
+
+    padding: 12px;
+    border-radius: 3px;
+
+    background-color: var(--strong);
+}
+
+.asset-info {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px; 
+}
+
+/* ====================HISTORY==================== */
+
+.transactions-container, .requests-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.request {
+    font-family: 'Geist Mono', monospace;
+    font-size: 14px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.request-info {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+}
+
+@media (min-width: 480px) {
+    .request-info { flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 12px; }
+}
+
+.request-response {
+    margin-left: auto;
+    padding-top: 12px;
+
+    & button {
+        transition: opacity .3s ease;
+        &:hover { text-decoration: underline; opacity: .84; }
+    }
+}
+
+/* ====================HISTORY==================== */
+
+.history {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.transactions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.transaction {
+    font-family: 'Geist Mono', monospace;
+    font-size: 14px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.transaction-timestamp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    color: var(--muted);
+}
+
+.transaction-info {
+    padding-left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
