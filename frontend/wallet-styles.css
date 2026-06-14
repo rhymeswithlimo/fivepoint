@@ -176,16 +176,6 @@
     .request-info { flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 12px; }
 }
 
-.request-response {
-    margin-left: auto;
-    padding-top: 12px;
-
-    & a {
-        transition: opacity .3s ease;
-        &:hover { text-decoration: underline; opacity: .84; }
-    }
-}
-
 /* ====================HISTORY==================== */
 
 .history {

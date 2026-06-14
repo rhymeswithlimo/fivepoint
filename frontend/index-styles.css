@@ -1,0 +1,107 @@
+/* ====================NAVIGATION==================== */
+
+nav {
+    width: 100%;
+    max-width: var(--lockedvw);
+    padding: 0 var(--sidepadding);
+    margin: 0 auto;
+}
+
+.home-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.home-nav-logo {
+    width: fit-content;
+    height: fit-content;
+
+    display: grid;
+    place-items: center;
+
+    & svg { fill: var(--contrast); width: 32px; }
+}
+
+/* ====================TOTAL BALANCE==================== */
+
+.total-balance div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    & button {
+        width: fit-content;
+        height: fit-content;
+        padding: 5px;
+
+        display: grid;
+        place-items: center;
+
+        transition: background-color .2s ease;
+        background-color: transparent;
+        border-radius: 3px;
+
+        & svg { width: 18px; fill: var(--muted); }
+
+        &:hover {
+            background-color: hsl(from var(--contrast) h s l / 0.1);
+        }
+    }
+}
+
+/* ====================WALLETS==================== */
+
+.wallets {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.wallets-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+}
+
+@media (max-width: 706px) {
+    .wallets-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 468px) {
+    .wallets-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.wallet {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 3;
+
+    border-radius: 12px;
+    padding: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: linear-gradient(180deg, rgba(208, 36, 218, 1) 0%, rgba(0, 0, 0, 0.12) 100%);
+    background-color: #D024DA;
+
+    transition: opacity .3s ease;
+    &:hover { opacity: .84; }
+}
+
+.wallet-icon svg {
+    width: 36px;
+}
+
+.wallet-info {
+    display: flex;
+    flex-direction: column;
+}

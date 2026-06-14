@@ -89,7 +89,7 @@ hr {
     border-top: 1px solid hsl(from var(--muted) h s l / 0.25);
 }
 
-section {
+section, nav {
     width: 100%;
     max-width: var(--lockedvw);
     padding: 0 var(--sidepadding);
@@ -126,6 +126,20 @@ section {
 
     &:hover { opacity: .84; }
     & svg { fill: var(--strong); width: 21px; }
+}
+
+.bracket-buttons {
+    font-family: 'Geist Mono', monospace;
+    font-size: 14px;
+
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    & a, button {
+        transition: opacity .3s ease;
+        &:hover { text-decoration: underline; opacity: .84; }
+    }
 }
 
 .switcher {
@@ -178,13 +192,10 @@ section {
     font-weight: 500;
 }
 
-.back-navigation {
-    width: 100%;
-    max-width: var(--lockedvw);
-    padding: 0 var(--sidepadding);
-    margin: 0 auto;
+/* ====================BACK NAVIGATION==================== */
 
-    margin-bottom: -12px;
+.back-navigation {
+    margin-bottom: -8px;
 }
 
 .back-navigation button {
