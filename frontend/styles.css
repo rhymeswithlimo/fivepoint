@@ -177,3 +177,23 @@ section {
     color: var(--strong);
     font-weight: 500;
 }
+
+.back-navigation {
+    width: 100%;
+    max-width: var(--lockedvw);
+    padding: 0 var(--sidepadding);
+    margin: 0 auto;
+
+    margin-bottom: -12px;
+}
+
+.back-navigation button {
+    & svg {
+        width: 18px;
+        fill: var(--muted);
+
+        transition: fill .2s ease;
+    }
+
+    &:hover { & svg { fill: var(--contrast); } }
+}

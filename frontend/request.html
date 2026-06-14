@@ -13,7 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <section class="request">
+    <nav class="back-navigation">
+        <button class="close-button"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0e0e0e" viewBox="0 0 256 256"><path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path></svg></button>
+    </nav>
+
+    <section class="request" onclick="history.back()">
         <h2>Confirm transaction to Tom</h2>
         <div class="request-info">
             <div>
@@ -47,5 +51,21 @@
             <button class="full-rounded">Confirm 0.012 BTC ($781) sent to Tom</button>
         </div>
     </section>
+
+    <!-- Back navigation script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".close-button, .back-button").forEach(button => {
+                button.addEventListener("click", () => {
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    } else {
+                        // Optional fallback if there's no previous page
+                        window.location.href = "/";
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
