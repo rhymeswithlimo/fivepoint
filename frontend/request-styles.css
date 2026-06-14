@@ -1,0 +1,70 @@
+.request {
+    margin: auto;
+    padding: 0 calc(clamp(0rem, -3.3929rem + 16.9643vw, 4.75rem) + var(--sidepadding));
+
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.request-info {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;    
+}
+
+.request-info div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: 'Geist Mono', monospace;
+    font-size: 14px;
+
+    & p:first-of-type { color: var(--muted); }
+}
+
+.wallet-tag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 1px 4px;
+    background-color: hsl(from #D024DA h s l / 0.24);
+    border-radius: 2px;
+
+    & svg { width: 15px; }
+}
+
+.request-fees div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    font-family: 'Geist Mono', monospace;
+    font-size: 14px;
+}
+
+.caution-text {
+    font-size: 12px;
+    text-align: center;
+    color: hsl(from var(--contrast) h s l / 0.32);
+
+    padding: 0 clamp(0.75rem, -5.4107rem + 30.8036vw, 9.375rem);
+    margin-top: 45px;
+}
+
+.request-confirm {
+    margin: 0 auto;
+    font-weight: 500;
+
+    width: 100%;
+    margin-top: -12px;
+    padding: 0 clamp(0rem, -2.1429rem + 10.7143vw, 3rem);
+
+    & button {
+        padding: 10px 0;
+        width: 100%;
+        opacity: .5;
+    }
+}

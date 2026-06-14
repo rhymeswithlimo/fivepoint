@@ -1,10 +1,3 @@
-
-.body-flex {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-}
-
 /* ====================BALANCE==================== */
 
 .balance-counter {
@@ -187,7 +180,7 @@
     margin-left: auto;
     padding-top: 12px;
 
-    & button {
+    & a {
         transition: opacity .3s ease;
         &:hover { text-decoration: underline; opacity: .84; }
     }

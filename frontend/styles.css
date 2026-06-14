@@ -24,6 +24,12 @@ body {
     padding: 36px 0;
 }
 
+.body-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
 /* ====================DECLARE==================== */
 
 :root {
@@ -34,7 +40,7 @@ body {
     --green: #22C55E;
     --red: #EF4444;
     
-    --sidepadding: clamp(16px, 12.6848px + 0.884vw, 24px);
+    --sidepadding: clamp(1rem, 0.6429rem + 1.7857vw, 1.5rem);
     --lockedvw: 768px;
 }
 
@@ -77,6 +83,11 @@ button { all: unset; cursor: pointer; text-align: center; &:active { scale: .99;
 svg { fill: var(--contrast); margin: 0; padding: 0; box-sizing: border-box; height: fit-content; width: fit-content; }
 
 .monospace { font-family: 'Geist Mono', monospace; font-size: 14px; }
+
+hr {
+    border: none;
+    border-top: 1px solid hsl(from var(--muted) h s l / 0.25);
+}
 
 section {
     width: 100%;
