@@ -20,6 +20,8 @@ body {
     flex-direction: column;
     
     scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 
     padding: 36px 0;
 }
@@ -72,9 +74,10 @@ a {
 }
 
 a:focus-visible,
-button:focus-visible {
-    outline: 2px solid var(--muted);
-    outline-offset: 3px;
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--contrast);
+    outline-offset: 2px;
 }
 
 input { all: unset; }
@@ -128,6 +131,11 @@ section, nav {
     & svg { fill: var(--strong); width: 21px; }
 }
 
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 .bracket-buttons {
     font-family: 'Geist Mono', monospace;
     font-size: 14px;
@@ -137,8 +145,18 @@ section, nav {
     user-select: none;
 
     & a, button {
+        padding: 1px;
+        width: fit-content;
+
         transition: opacity .3s ease;
         &:hover { text-decoration: underline; opacity: .84; }
+
+        &:focus-visible {
+            outline: none;
+            background-color: var(--contrast);
+            color: var(--strong) !important;
+            animation: blink .08s steps(4, end) forwards;
+        }
     }
 }
 
@@ -194,10 +212,7 @@ section, nav {
 
 /* ====================BACK NAVIGATION==================== */
 
-.back-navigation {
-    margin-bottom: -8px;
-}
-
+.back-navigation { margin-bottom: -8px; }
 .back-navigation button {
     & svg {
         width: 18px;

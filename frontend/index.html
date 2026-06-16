@@ -20,8 +20,9 @@
             </svg>
         </div>
         <div class="bracket-buttons">
-            <a href="" style="color: var(--muted);">[settings]</a>
-            <button style="color: var(--muted);">[add]</button>
+            <a href="" class="neutral" style="display: none;">[setup security]</a>
+            <a href="" class="neutral">[settings]</a>
+            <button class="neutral">[add]</button>
         </div>
     </nav>
 
@@ -40,7 +41,6 @@
         <p class="unselectable" style="font-weight: 450;">Your Wallets</p>
         <p style="color: var(--muted); font-size: 14px; margin: 0 auto; padding: 24px 0; display: none;" class="monospace">You have no wallets connected yet.</p>
         <div class="wallets-container">
-
             <a href="wallet.html" class="wallet">
                 <div class="wallet-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0e0e0e" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"></path></svg>
@@ -59,18 +59,24 @@
                     <p class="monospace" style="color: hsl(from var(--contrast) h s l / 0.64);"><span class="encrypt">0.12</span> BTC</p>
                 </div>
             </a>
-            
-
         </div>
     </section>
 
     <!-- Scramble text w/ hide button -->
     <script>
         const STATIC_CHARS = new Set(['$', ',', '.', ' ']);
-        const SCRAMBLE_POOL = '0123456789&%^#@!kxzqw*';
+        const SYMBOLS = '&%^#@!*~|+=<>?kxzqw';
+        const DIGITS = '0123456789';
         const ANIMATION_DURATION = 500; // ms
 
         let isEncrypted = true;
+
+        function randomScrambleChar() {
+            // 2 in 3 chance of symbol, 1 in 3 chance of digit
+            return Math.random() < 0.7
+                ? SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)]
+                : DIGITS[Math.floor(Math.random() * DIGITS.length)];
+        }
 
         function animate(el, encrypting = false) {
             const finalText = el.dataset.original || el.textContent;
@@ -91,12 +97,12 @@
                         display += ch;
                     } else if (encrypting) {
                         display += i < revealedUpTo
-                            ? SCRAMBLE_POOL[Math.floor(Math.random() * SCRAMBLE_POOL.length)]
+                            ? randomScrambleChar()
                             : ch;
                     } else {
                         display += i < revealedUpTo
                             ? ch
-                            : SCRAMBLE_POOL[Math.floor(Math.random() * SCRAMBLE_POOL.length)];
+                            : randomScrambleChar();
                     }
                 }
 
@@ -105,7 +111,7 @@
                 if (frame >= steps) {
                     clearInterval(tick);
                     el.textContent = encrypting
-                        ? finalText.split('').map(ch => STATIC_CHARS.has(ch) ? ch : SCRAMBLE_POOL[Math.floor(Math.random() * SCRAMBLE_POOL.length)]).join('')
+                        ? finalText.split('').map(ch => STATIC_CHARS.has(ch) ? ch : randomScrambleChar()).join('')
                         : finalText;
                 }
             }, interval);
@@ -129,7 +135,7 @@
             document.querySelectorAll('.encrypt').forEach(el => {
                 el.dataset.original = el.textContent;
                 el.textContent = el.textContent.split('').map(ch =>
-                    STATIC_CHARS.has(ch) ? ch : SCRAMBLE_POOL[Math.floor(Math.random() * SCRAMBLE_POOL.length)]
+                    STATIC_CHARS.has(ch) ? ch : randomScrambleChar()
                 ).join('');
             });
         });

@@ -93,9 +93,11 @@ nav {
     background: linear-gradient(180deg, rgba(208, 36, 218, 1) 0%, rgba(0, 0, 0, 0.12) 100%);
     background-color: #D024DA;
 
-    transition: opacity .3s ease;
-    &:hover { opacity: .84; }
+    transition: opacity .5s ease;
 }
+
+.wallets-container:hover .wallet { opacity: 0.84; }
+.wallets-container .wallet:hover { opacity: 1; }
 
 .wallet-icon svg {
     width: 36px;
