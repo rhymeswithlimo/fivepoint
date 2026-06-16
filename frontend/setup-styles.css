@@ -32,7 +32,7 @@
 .setup-form {
     width: 100%;
     max-width: var(--lockedvw);
-    padding: 0 var(--sidepadding);
+    padding: 0 ;
     margin: 0 auto;
 
     display: flex;
@@ -41,7 +41,7 @@
     justify-content: center;
     gap: 36px;
 
-    padding: 0 180px;
+    padding: 0 calc(clamp(0rem, -8.0357rem + 40.1786vw, 11.25rem) + var(--sidepadding));
     margin: auto; 
 
     & label {
@@ -63,6 +63,7 @@
         width: 100%;
         background-color: hsl(from var(--contrast) h s l / 0.1);
         padding: 8px 12px;
+        box-sizing: border-box;
 
         border-radius: 4px;
 
