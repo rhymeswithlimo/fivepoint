@@ -41,6 +41,11 @@ body {
 
     --green: #22C55E;
     --red: #EF4444;
+
+    --wallet-magenta: #D024DA;
+    --wallet-lime: #3aa00a;
+    --wallet-orange: #e7610e;
+    --wallet-silver: #757473; 
     
     --sidepadding: clamp(1rem, 0.6429rem + 1.7857vw, 1.5rem);
     --lockedvw: 768px;

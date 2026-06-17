@@ -20,22 +20,134 @@
             </svg>
         </div>
         <div class="landing-options bracket-buttons">
-            <button class="neutral">[create a new wallet]</button>
-            <button class="neutral">[import an exisiting wallet]</button>
+            <button type="button" class="neutral">[create a new wallet]</button>
+            <button type="button" class="neutral">[import an existing wallet]</button>
         </div>
     </section>
 
     <form id="createForm" class="setup-form">
+        <div class="form-question">
+            <label for="wname" class="unselectable form-question-label">1. Name Your Wallet</label>
+            <input type="text" id="wname" name="wname" placeholder="e.g. 'Rainy Day'" autocomplete="off" class="form-text-input">
+        </div>
         <div class="form-question active">
-            <label for="wname" class="unselectable">1. Name Your Wallet</label>
-            <input type="text" id="wname" name="wname" placeholder="e.g. 'Rainy Day'" autocomplete="off">
+            <p class="unselectable form-question-label">2. Choose an Icon for Your Wallet</p>
+            <div class="icon-selector bracket-buttons">
+                <div>
+                    <button type="button">&lt;</button>
+                    <div class="icon-selector-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M128,16a96.11,96.11,0,0,0-96,96c0,24,12.56,55.06,33.61,83,21.18,28.15,44.5,45,62.39,45s41.21-16.81,62.39-45c21.05-28,33.61-59,33.61-83A96.11,96.11,0,0,0,128,16ZM64,116a12,12,0,0,1,12-12,36,36,0,0,1,36,36,12,12,0,0,1-12,12A36,36,0,0,1,64,116Zm80,84H112a8,8,0,0,1,0-16h32a8,8,0,0,1,0,16Zm12-48a12,12,0,0,1-12-12,36,36,0,0,1,36-36,12,12,0,0,1,12,12A36,36,0,0,1,156,152Z"></path></svg>
+                    </div>
+                    <button type="button">&gt;</button>
+                </div>
+                <p style="color: var(--muted);"><i>alien</i></p>
+            </div>
         </div>
         <div class="bracket-buttons">
-            <button class="neutral">[cancel]</button>
-            <button class="neutral" style="display: none;">[back]</button>
-            <button class="neutral">[confirm]</button>
+            <button type="button" class="neutral">[cancel]</button>
+            <button type="button" class="neutral" style="display: none;">[back]</button>
+            <button type="button" class="neutral">[continue]</button>
         </div>
     </form>
 
+    <!-- Wallet icons fetch script -->
+    <script>
+        // wallet-icons.js
+        // Fetches wallet-icons.txt, parses "name = <svg>...</svg>" entries,
+        // sorts them alphabetically by name, and wires up the < / > buttons
+        // in the icon selector to cycle through them.
+
+        (function () {
+            const ICONS_PATH = 'assets/wallet-icons.txt';
+
+            /**
+             * Parses the raw text file into an array of { name, svg } objects.
+             * Entries are separated by blank lines, each line formatted as:
+             *   name = <svg ...>...</svg>
+             */
+            function parseIcons(text) {
+                return text
+                    .split(/\n\s*\n/) // split on blank lines between entries
+                    .map((block) => block.trim())
+                    .filter(Boolean)
+                    .map((block) => {
+                        const eqIndex = block.indexOf('=');
+                        if (eqIndex === -1) return null;
+
+                        const name = block.slice(0, eqIndex).trim();
+                        const svg = block.slice(eqIndex + 1).trim();
+
+                        if (!name || !svg) return null;
+                        return { name, svg };
+                    })
+                    .filter(Boolean);
+            }
+
+            function sortIconsAlphabetically(icons) {
+                return [...icons].sort((a, b) =>
+                    a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+                );
+            }
+
+            function initIconSelector(icons) {
+                const selector = document.querySelector('.icon-selector');
+                if (!selector) return;
+
+                const svgSlot = selector.querySelector('.icon-selector-svg');
+                const nameLabel = selector.querySelector('p');
+                const [prevBtn, nextBtn] = selector.querySelectorAll('button');
+
+                if (!svgSlot || !nameLabel || !prevBtn || !nextBtn) return;
+
+                // Let screen readers announce icon changes as the user cycles.
+                nameLabel.setAttribute('aria-live', 'polite');
+
+                let currentIndex = 0;
+
+                function render() {
+                    const icon = icons[currentIndex];
+                    svgSlot.innerHTML = icon.svg;
+                    nameLabel.innerHTML = `<i>${icon.name}</i>`;
+                }
+
+                function goTo(delta) {
+                    currentIndex = (currentIndex + delta + icons.length) % icons.length;
+                    render();
+                }
+
+                prevBtn.addEventListener('click', () => goTo(-1));
+                nextBtn.addEventListener('click', () => goTo(1));
+
+                render();
+            }
+
+            async function loadIcons() {
+                let response;
+                try {
+                    response = await fetch(ICONS_PATH);
+                } catch (err) {
+                    console.error('Failed to fetch wallet-icons.txt. Note: this requires the page be served over http(s), not opened directly as a file.', err);
+                    return;
+                }
+
+                if (!response.ok) {
+                    console.error(`Failed to load wallet-icons.txt: ${response.status} ${response.statusText}`);
+                    return;
+                }
+
+                const text = await response.text();
+                const icons = sortIconsAlphabetically(parseIcons(text));
+
+                if (icons.length === 0) {
+                    console.error('No icons parsed from wallet-icons.txt.');
+                    return;
+                }
+
+                initIconSelector(icons);
+            }
+
+            document.addEventListener('DOMContentLoaded', loadIcons);
+        })();
+    </script>
 </body>
 </html>

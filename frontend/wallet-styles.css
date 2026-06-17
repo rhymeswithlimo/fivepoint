@@ -29,8 +29,8 @@
     border-radius: 16px;
     padding: 16px;
 
-    background: linear-gradient(180deg,rgba(208, 36, 218, 1) 0%, rgba(0, 0, 0, 0.12) 100%);
-    background-color: #D024DA;
+    background: linear-gradient(180deg, var(--wallet-magenta) 0%, rgba(0, 0, 0, 0.12) 100%);
+    background-color: var(--wallet-magenta);
     font-size: 15px;
 
     display: flex;
@@ -72,7 +72,7 @@
     &:active { scale: .99; }
 }
 
-.wallet-card-copy-address:hover { background-color: hsl(from var(--contrast) h s l / 0.16); }
+.wallet-card-copy-address:hover { background-color: hsl(from var(--contrast) h s l / 0.12); }
 
 /* ====================HOLDINGS==================== */
 
