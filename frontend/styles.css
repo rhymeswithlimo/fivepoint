@@ -215,12 +215,17 @@ section, nav {
     font-weight: 500;
 }
 
-/* ====================BACK NAVIGATION==================== */
+/* ====================MISC==================== */
 
-.back-navigation { margin-bottom: -8px; }
+.back-navigation { 
+    margin-bottom: -5px;
+
+    display: flex;
+    justify-content: space-between;
+}
 .back-navigation button {
     & svg {
-        width: 18px;
+        width: 20px;
         fill: var(--muted);
 
         transition: fill .2s ease;
