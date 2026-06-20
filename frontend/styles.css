@@ -110,8 +110,10 @@ section, nav {
     user-select: none;
 }
 
-.increase { color: var(--green); }
-.decrease { color: var(--red); }
+.hidden { display: none; }
+
+.increase, .accept { color: var(--green); }
+.decrease, .decline { color: var(--red); }
 .neutral { color: var(--muted); }
 
 /* ====================BUTTON STYLING==================== */
