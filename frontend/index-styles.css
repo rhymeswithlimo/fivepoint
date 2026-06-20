@@ -21,7 +21,7 @@ nav {
     display: grid;
     place-items: center;
 
-    & svg { fill: var(--contrast); width: 32px; }
+    & svg { fill: var(--contrast); width: 24px; }
 }
 
 /* ====================TOTAL BALANCE==================== */
