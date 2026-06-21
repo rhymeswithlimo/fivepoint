@@ -1,4 +1,9 @@
-/* ====================BALANCE==================== */
+/* ============================================================
+   Fivepoint — wallet detail page (wallet.html)
+   Balance, wallet card, requests, holdings, and history.
+   ============================================================ */
+
+/* ====================  BALANCE  ==================== */
 
 .balance-counter {
     display: flex;
@@ -7,7 +12,7 @@
     gap: 24px;
 }
 
-/* ====================WALLET==================== */
+/* ====================  WALLET CARD  ==================== */
 
 .wallet-container {
     display: flex;
@@ -37,6 +42,11 @@
     flex-direction: column;
 }
 
+.wallet-card.c-magenta { background: linear-gradient(180deg, var(--wallet-magenta) 0%, rgba(0, 0, 0, 0.12) 100%); background-color: var(--wallet-magenta); }
+.wallet-card.c-lime    { background: linear-gradient(180deg, var(--wallet-lime) 0%, rgba(0, 0, 0, 0.12) 100%); background-color: var(--wallet-lime); }
+.wallet-card.c-orange  { background: linear-gradient(180deg, var(--wallet-orange) 0%, rgba(0, 0, 0, 0.12) 100%); background-color: var(--wallet-orange); }
+.wallet-card.c-silver  { background: linear-gradient(180deg, var(--wallet-silver) 0%, rgba(0, 0, 0, 0.12) 100%); background-color: var(--wallet-silver); }
+
 .wallet-card-top {
     display: flex;
     justify-content: space-between;
@@ -44,8 +54,8 @@
 }
 
 .wallet-card-top-icon {
-    width: 38px; 
-    
+    width: 38px;
+
     & svg {
         width: 100%;
         height: auto;
@@ -55,6 +65,11 @@
 
 .wallet-card-bottom {
     margin-top: auto;
+}
+
+.wallet-card-balance {
+    color: hsl(from var(--contrast) h s l / 0.64);
+    font-size: 15px;
 }
 
 .wallet-card-copy-address {
@@ -74,7 +89,7 @@
 
 .wallet-card-copy-address:hover { background-color: hsl(from var(--contrast) h s l / 0.12); }
 
-/* ====================HOLDINGS==================== */
+/* ====================  HOLDINGS  ==================== */
 
 .holdings {
     display: flex;
@@ -99,16 +114,6 @@
     .holdings-header .switcher-btn { width: 100%; }
 }
 
-.holdings-change {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    
-    color: var(--green);
-
-    & svg { width: 24px; fill: var(--green); }
-}
-
 .holdings-assets {
     display: grid;
     grid-template-columns: 1fr;
@@ -130,7 +135,7 @@
 
     display: flex;
     flex-direction: column;
-    gap: 2px; 
+    gap: 2px;
 
     padding: 12px;
     border-radius: 3px;
@@ -143,12 +148,12 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 12px; 
+    gap: 12px;
 }
 
-/* ====================HISTORY==================== */
+/* ====================  REQUESTS  ==================== */
 
-.transactions-container, .requests-container {
+.requests-container {
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -176,12 +181,21 @@
     .request-info { flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 12px; }
 }
 
-/* ====================HISTORY==================== */
+.request-actions {
+    margin-left: auto;
+    padding-top: 12px;
+}
+
+/* ====================  HISTORY  ==================== */
 
 .history {
     display: flex;
     flex-direction: column;
     gap: 24px;
+}
+
+.section-title {
+    font-weight: 500;
 }
 
 .transactions-container {
@@ -214,4 +228,13 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+}
+
+.transaction-row {
+    display: flex;
+}
+
+.transaction-counterparty {
+    margin-left: auto;
+    color: var(--muted);
 }

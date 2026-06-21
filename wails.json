@@ -1,0 +1,16 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "Fivepoint",
+  "outputfilename": "Fivepoint",
+  "frontend:install": "",
+  "frontend:build": "",
+  "frontend:dev:watcher": "",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "rhymeswithlimo"
+  },
+  "info": {
+    "productName": "Fivepoint",
+    "comments": "Open-source self-custody crypto wallet"
+  }
+}

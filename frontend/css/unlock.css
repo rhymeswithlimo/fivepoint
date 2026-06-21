@@ -1,0 +1,30 @@
+/* ============================================================
+   Fivepoint — unlock / first-run screen (unlock.html)
+   ============================================================ */
+
+.unlock-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100%;
+    max-width: 320px;
+}
+
+.unlock-prompt {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.unlock-error {
+    text-align: center;
+    min-height: 1em;
+}
+
+.unlock-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding-top: 4px;
+}

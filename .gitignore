@@ -1,0 +1,19 @@
+# Wails / build output
+/build/bin/
+*.exe
+*.app
+*.dll
+*.so
+*.dylib
+
+# Go
+/vendor/
+*.test
+*.out
+coverage.*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

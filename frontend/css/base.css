@@ -1,3 +1,50 @@
+/* ============================================================
+   Fivepoint — base stylesheet
+   Design tokens, resets, shared elements, and shared components.
+   Page-specific rules live in home.css / setup.css / wallet.css.
+   ============================================================ */
+
+/* ====================  DESIGN TOKENS  ==================== */
+
+:root {
+    /* Surfaces & text */
+    --strong: #050505;
+    --contrast: #FAFAFA;
+    --muted: #A0A0A0;
+
+    /* Value direction */
+    --green: #22C55E;
+    --red: #EF4444;
+
+    /* Wallet accent colors */
+    --wallet-magenta: #D024DA;
+    --wallet-lime: #3aa00a;
+    --wallet-orange: #e7610e;
+    --wallet-silver: #757473;
+
+    /* Layout */
+    --sidepadding: clamp(1rem, 0.6429rem + 1.7857vw, 1.5rem);
+    --lockedvw: 768px;
+}
+
+@font-face {
+    font-family: 'Geist';
+    src: url('../assets/fonts/Geist[wght].woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geist Mono';
+    src: url('../assets/fonts/GeistMono[wght].woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ====================  RESET  ==================== */
+
 *,
 *::before,
 *::after {
@@ -9,6 +56,8 @@
     padding: 0;
 }
 
+/* ====================  BASE ELEMENTS  ==================== */
+
 body {
     font-family: 'Geist', sans-serif;
     background-color: var(--strong);
@@ -18,56 +67,13 @@ body {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    
+
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
 
     padding: 36px 0;
 }
-
-.body-flex {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-}
-
-/* ====================DECLARE==================== */
-
-:root {
-    --strong: #050505;
-    --contrast: #FAFAFA;
-    --muted: #A0A0A0;
-
-    --green: #22C55E;
-    --red: #EF4444;
-
-    --wallet-magenta: #D024DA;
-    --wallet-lime: #3aa00a;
-    --wallet-orange: #e7610e;
-    --wallet-silver: #757473; 
-    
-    --sidepadding: clamp(1rem, 0.6429rem + 1.7857vw, 1.5rem);
-    --lockedvw: 768px;
-}
-
-@font-face {
-    font-family: 'Geist';
-    src: url('assets/fonts/Geist[wght].woff2') format('woff2');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Geist Mono';
-    src: url('assets/fonts/GeistMono[wght].woff2') format('woff2');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* ====================BASIC CALLING==================== */
 
 a {
     font-family: inherit;
@@ -90,8 +96,6 @@ button { all: unset; cursor: pointer; text-align: center; &:active { scale: .99;
 
 svg { fill: var(--contrast); margin: 0; padding: 0; box-sizing: border-box; height: fit-content; width: fit-content; }
 
-.monospace { font-family: 'Geist Mono', monospace; font-size: 14px; }
-
 hr {
     border: none;
     border-top: 1px solid hsl(from var(--muted) h s l / 0.25);
@@ -104,19 +108,39 @@ section, nav {
     margin: 0 auto;
 }
 
+/* ====================  LAYOUT HELPERS  ==================== */
+
+/* Vertical stack used by the home and wallet page bodies. */
+.page-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
 .unselectable {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 
-.hidden { display: none; }
+.hidden { display: none !important; }
 
-.increase, .accept { color: var(--green); }
-.decrease, .decline { color: var(--red); }
-.neutral { color: var(--muted); }
+/* ====================  TEXT UTILITIES  ==================== */
 
-/* ====================BUTTON STYLING==================== */
+.monospace { font-family: 'Geist Mono', monospace; font-size: 14px; }
+
+.text-muted { color: var(--muted); }
+
+/* Value direction (price / percentage changes) */
+.value-up   { color: var(--green); }
+.value-down { color: var(--red); }
+.value-flat { color: var(--muted); }
+
+/* Request action sentiment */
+.action-accept  { color: var(--green); }
+.action-decline { color: var(--red); }
+
+/* ====================  PILL BUTTON  ==================== */
 
 .full-rounded {
     padding: 7px 14px;
@@ -137,6 +161,8 @@ section, nav {
     &:hover { opacity: .84; }
     & svg { fill: var(--strong); width: 21px; }
 }
+
+/* ====================  BRACKET BUTTONS  ==================== */
 
 @keyframes blink {
     0%, 100% { opacity: 1; }
@@ -166,6 +192,8 @@ section, nav {
         }
     }
 }
+
+/* ====================  SEGMENTED SWITCHER  ==================== */
 
 .switcher {
     position: relative;
@@ -217,14 +245,15 @@ section, nav {
     font-weight: 500;
 }
 
-/* ====================MISC==================== */
+/* ====================  BACK NAVIGATION  ==================== */
 
-.back-navigation { 
+.back-navigation {
     margin-bottom: -5px;
 
     display: flex;
     justify-content: space-between;
 }
+
 .back-navigation button {
     & svg {
         width: 20px;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock - Fivepoint</title>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/setup.css">
+    <link rel="stylesheet" href="css/unlock.css">
+
+    <script defer src="js/backend.js"></script>
+    <script defer src="js/unlock.js"></script>
+</head>
+<body>
+    <section class="landing">
+        <div class="landing-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" data-name="LOGO" viewBox="0 0 1502.09 2160" aria-label="Fivepoint">
+                <g data-name="EMBLEM">
+                    <g data-name="BOTTOM">
+                    <circle cx="370.22" cy="1805.82" r="335.49"/>
+                    </g>
+                    <g data-name="MIDDLE">
+                    <circle cx="370.22" cy="1080" r="335.49"/>
+                    <circle cx="1131.87" cy="1080" r="335.49"/>
+                    </g>
+                    <g data-name="TOP">
+                    <circle cx="370.22" cy="354.18" r="335.49"/>
+                    <circle cx="1131.87" cy="354.18" r="335.49"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+        <form class="unlock-panel" id="unlockForm">
+            <p class="unlock-prompt text-muted monospace" id="prompt">enter your passphrase</p>
+            <input type="password" id="pass" class="form-text-input" placeholder="master passphrase" autocomplete="current-password" autofocus>
+            <input type="password" id="passConfirm" class="form-text-input hidden" placeholder="confirm passphrase" autocomplete="new-password">
+            <p class="unlock-error value-down monospace hidden" id="error"></p>
+            <div class="bracket-buttons unlock-actions">
+                <button type="submit" class="text-muted" id="submitBtn">[unlock]</button>
+                <button type="button" class="text-muted hidden" id="pinBtn">[use PIN]</button>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

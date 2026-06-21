@@ -1,0 +1,136 @@
+/* ============================================================
+   Fivepoint — home page (index.html)
+   Top navigation, total balance, and the wallet grid.
+   ============================================================ */
+
+/* ====================  NAVIGATION  ==================== */
+
+.home-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.home-nav-logo {
+    width: fit-content;
+    height: fit-content;
+
+    display: grid;
+    place-items: center;
+
+    & svg { fill: var(--contrast); width: 24px; }
+}
+
+/* ====================  TOTAL BALANCE  ==================== */
+
+.total-balance-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.total-balance-amount {
+    font-size: 36px;
+}
+
+.balance-toggle {
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+
+    display: grid;
+    place-items: center;
+
+    transition: background-color .2s ease;
+    background-color: transparent;
+    border-radius: 3px;
+
+    & svg { width: 18px; fill: var(--muted); }
+
+    &:hover {
+        background-color: hsl(from var(--contrast) h s l / 0.1);
+    }
+}
+
+/* ====================  WALLET GRID  ==================== */
+
+.wallets {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.wallets-title {
+    font-weight: 450;
+}
+
+.wallets-empty {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 24px 0;
+}
+
+.wallet-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+}
+
+@media (max-width: 706px) {
+    .wallet-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 468px) {
+    .wallet-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.wallet-tile {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 3;
+
+    border-radius: 12px;
+    padding: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* Default accent; a .c-<color> modifier overrides it per wallet. */
+    background: linear-gradient(180deg, var(--wallet-magenta) 0%, rgba(0, 0, 0, 0.12) 100%);
+    background-color: var(--wallet-magenta);
+
+    transition: opacity .5s ease;
+}
+
+.wallet-tile.c-magenta { background: linear-gradient(180deg, var(--wallet-magenta) 0%, rgba(0, 0, 0, 0.12) 100%); background-color: var(--wallet-magenta); }
+.wallet-tile.c-lime    { background: linear-gradient(180deg, var(--wallet-lime) 0%, rgba(0, 0, 0, 0.12) 100%); background-color: var(--wallet-lime); }
+.wallet-tile.c-orange  { background: linear-gradient(180deg, var(--wallet-orange) 0%, rgba(0, 0, 0, 0.12) 100%); background-color: var(--wallet-orange); }
+.wallet-tile.c-silver  { background: linear-gradient(180deg, var(--wallet-silver) 0%, rgba(0, 0, 0, 0.12) 100%); background-color: var(--wallet-silver); }
+
+.wallet-grid:hover .wallet-tile { opacity: 0.84; }
+.wallet-grid .wallet-tile:hover { opacity: 1; }
+
+.wallet-tile-icon svg {
+    width: 36px;
+}
+
+.wallet-tile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.wallet-tile-name {
+    font-weight: 500;
+}
+
+.wallet-tile-balance {
+    color: hsl(from var(--contrast) h s l / 0.64);
+}

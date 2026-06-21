@@ -5,28 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome - Fivepoint</title>
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="setup-styles.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/setup.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <script defer src="js/backend.js"></script>
+    <script defer src="js/icons.js"></script>
+    <script defer src="js/guard.js"></script>
+    <script defer src="js/setup.js"></script>
 </head>
 <body>
 
     <!-- LANDING -->
     <section class="landing">
         <div class="landing-logo">
-            <svg xmlns="http://www.w3.org/2000/svg" id="uuid-760ef131-dcbc-4769-bd9a-6b7b143c35c2" data-name="LOGO" viewBox="0 0 1502.09 2160">
-                <g id="uuid-019e4de7-e53f-4445-9336-372fd1e08f1c" data-name="EMBLEM">
-                    <g id="uuid-f4e6c858-0a8c-4e8c-bc08-421a40871544" data-name="BOTTOM">
-                    <circle id="uuid-07fe2c6e-21d2-4e41-b722-b0446ae77b77" data-name="&amp;lt;Ellipse&amp;gt;" cx="370.22" cy="1805.82" r="335.49"/>
+            <svg xmlns="http://www.w3.org/2000/svg" data-name="LOGO" viewBox="0 0 1502.09 2160" aria-label="Fivepoint">
+                <g data-name="EMBLEM">
+                    <g data-name="BOTTOM">
+                    <circle cx="370.22" cy="1805.82" r="335.49"/>
                     </g>
-                    <g id="uuid-db2dfab3-4245-47ae-b7f2-3e61df0c06da" data-name="MIDDLE">
+                    <g data-name="MIDDLE">
                     <circle cx="370.22" cy="1080" r="335.49"/>
                     <circle cx="1131.87" cy="1080" r="335.49"/>
                     </g>
-                    <g id="uuid-48cd0dd9-6ee0-499a-8d92-0afb2ea44e4f" data-name="TOP">
+                    <g data-name="TOP">
                     <circle cx="370.22" cy="354.18" r="335.49"/>
                     <circle cx="1131.87" cy="354.18" r="335.49"/>
                     </g>
@@ -34,13 +35,13 @@
             </svg>
         </div>
         <div class="landing-options bracket-buttons">
-            <button type="button" class="neutral" id="createWalletBtn">[create a new wallet]</button>
-            <button type="button" class="neutral">[import an existing wallet]</button>
+            <button type="button" class="text-muted" id="createWalletBtn">[create a new wallet]</button>
+            <button type="button" class="text-muted" id="importWalletBtn">[import an existing wallet]</button>
         </div>
     </section>
 
     <!-- CREATE WALLET FORM -->
-    <form id="createForm" class="setup-form" style="display: none;">
+    <form id="createForm" class="setup-form hidden">
 
         <div class="form-question">
             <label for="wname" class="unselectable form-question-label">1. Name Your Wallet</label>
@@ -50,245 +51,99 @@
         <div class="form-question">
             <p class="unselectable form-question-label">2. Choose an Icon for Your Wallet</p>
             <div class="icon-selector bracket-buttons">
-                <div>
-                    <button type="button" style="padding: 3px;">&lt;</button>
+                <div class="icon-stepper">
+                    <button type="button" class="icon-nav-btn" aria-label="Previous icon">&lt;</button>
                     <div class="icon-selector-svg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
                             <path d="M128,16a96.11,96.11,0,0,0-96,96c0,24,12.56,55.06,33.61,83,21.18,28.15,44.5,45,62.39,45s41.21-16.81,62.39-45c21.05-28,33.61-59,33.61-83A96.11,96.11,0,0,0,128,16ZM64,116a12,12,0,0,1,12-12,36,36,0,0,1,36,36,12,12,0,0,1-12,12A36,36,0,0,1,64,116Zm80,84H112a8,8,0,0,1,0-16h32a8,8,0,0,1,0,16Zm12-48a12,12,0,0,1-12-12,36,36,0,0,1,36-36,12,12,0,0,1,12,12A36,36,0,0,1,156,152Z"/>
                         </svg>
                     </div>
-                    <button type="button" style="padding: 3px;">&gt;</button>
+                    <button type="button" class="icon-nav-btn" aria-label="Next icon">&gt;</button>
                 </div>
-                <p style="color: var(--muted);"><i>alien</i></p>
+                <p class="icon-name"><i>alien</i></p>
             </div>
         </div>
 
         <div class="form-question">
             <p class="unselectable form-question-label">3. Choose a Color for Your Wallet</p>
             <div class="color-picker">
-                <input type="radio" name="color" id="magenta" value="magenta">
-                <label for="magenta" class="swatch" style="background-color: var(--wallet-magenta);"></label>
+                <input type="radio" name="color" id="magenta" value="magenta" checked>
+                <label for="magenta" class="swatch swatch-magenta"></label>
 
                 <input type="radio" name="color" id="lime" value="lime">
-                <label for="lime" class="swatch" style="background-color: var(--wallet-lime);"></label>
+                <label for="lime" class="swatch swatch-lime"></label>
 
                 <input type="radio" name="color" id="orange" value="orange">
-                <label for="orange" class="swatch" style="background-color: var(--wallet-orange);"></label>
+                <label for="orange" class="swatch swatch-orange"></label>
 
                 <input type="radio" name="color" id="silver" value="silver">
-                <label for="silver" class="swatch" style="background-color: var(--wallet-silver);"></label>
+                <label for="silver" class="swatch swatch-silver"></label>
             </div>
         </div>
 
+        <p class="form-error hidden" id="createError"></p>
+
         <div class="bracket-buttons" id="formControls">
-            <button type="button" class="neutral" id="cancelBtn">[cancel]</button>
-            <button type="button" class="neutral" id="backBtn" style="display: none;">[back]</button>
-            <button type="button" class="neutral" id="continueBtn">[continue]</button>
+            <button type="button" class="text-muted" id="cancelBtn">[cancel]</button>
+            <button type="button" class="text-muted hidden" id="backBtn">[back]</button>
+            <button type="button" class="text-muted" id="continueBtn">[continue]</button>
         </div>
 
     </form>
 
-    <!-- WALLET READY (placeholder) -->
-    <section class="wallet-ready" style="display: none;">
-        <p>wallet ready</p>
+    <!-- IMPORT WALLET FORM -->
+    <form id="importForm" class="setup-form hidden">
+
+        <div class="form-question active">
+            <label for="iname" class="unselectable form-question-label">Name Your Wallet</label>
+            <input type="text" id="iname" placeholder="e.g. 'Rainy Day'" autocomplete="off" class="form-text-input">
+        </div>
+
+        <div class="bracket-buttons import-type">
+            <button type="button" class="text-muted" id="typeSeed">[seed phrase]</button>
+            <button type="button" class="text-muted" id="typeKey">[private key]</button>
+        </div>
+
+        <div class="form-question active">
+            <label for="isecret" class="unselectable form-question-label" id="secretLabel">Recovery Seed Phrase</label>
+            <textarea id="isecret" class="form-text-input" placeholder="word1 word2 word3 ..." autocomplete="off" spellcheck="false"></textarea>
+        </div>
+
+        <div class="form-question active" id="importColorQuestion">
+            <p class="unselectable form-question-label">Choose a Color</p>
+            <div class="color-picker">
+                <input type="radio" name="color" id="imagenta" value="magenta" checked>
+                <label for="imagenta" class="swatch swatch-magenta"></label>
+
+                <input type="radio" name="color" id="ilime" value="lime">
+                <label for="ilime" class="swatch swatch-lime"></label>
+
+                <input type="radio" name="color" id="iorange" value="orange">
+                <label for="iorange" class="swatch swatch-orange"></label>
+
+                <input type="radio" name="color" id="isilver" value="silver">
+                <label for="isilver" class="swatch swatch-silver"></label>
+            </div>
+        </div>
+
+        <p class="form-error hidden" id="importError"></p>
+
+        <div class="bracket-buttons">
+            <button type="button" class="text-muted" id="importCancelBtn">[cancel]</button>
+            <button type="button" class="text-muted" id="importSubmitBtn">[import]</button>
+        </div>
+
+    </form>
+
+    <!-- SEED BACKUP -->
+    <section class="seed-backup hidden" id="seedBackup">
+        <p class="form-question-label unselectable">Back Up Your Recovery Phrase</p>
+        <p class="seed-warning unselectable">Write these words down in order and keep them offline. Anyone with this phrase controls your funds. Fivepoint cannot recover it for you.</p>
+        <div class="seed-grid" id="seedGrid"></div>
+        <div class="bracket-buttons">
+            <button type="button" class="text-muted" id="copySeedBtn">[copy]</button>
+            <button type="button" class="text-muted" id="seedDoneBtn">[i've saved it &rarr;]</button>
+        </div>
     </section>
-
-    <!-- Icon loader -->
-    <script>
-        (function () {
-            const ICONS_PATH = 'assets/wallet_icons.txt';
-
-            function parseIcons(text) {
-                return text
-                    .split(/\n\s*\n/)
-                    .map((block) => block.trim())
-                    .filter(Boolean)
-                    .map((block) => {
-                        const eqIndex = block.indexOf('=');
-                        if (eqIndex === -1) return null;
-                        const name = block.slice(0, eqIndex).trim();
-                        const svg = block.slice(eqIndex + 1).trim();
-                        if (!name || !svg) return null;
-                        return { name, svg };
-                    })
-                    .filter(Boolean);
-            }
-
-            function sortIconsAlphabetically(icons) {
-                return [...icons].sort((a, b) =>
-                    a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
-                );
-            }
-
-            function initIconSelector(icons) {
-                const selector = document.querySelector('.icon-selector');
-                if (!selector) return;
-
-                const svgSlot = selector.querySelector('.icon-selector-svg');
-                const nameLabel = selector.querySelector('p');
-                const [prevBtn, nextBtn] = selector.querySelectorAll('button');
-
-                if (!svgSlot || !nameLabel || !prevBtn || !nextBtn) return;
-
-                nameLabel.setAttribute('aria-live', 'polite');
-
-                let currentIndex = 0;
-
-                function render() {
-                    const icon = icons[currentIndex];
-                    svgSlot.innerHTML = icon.svg;
-                    nameLabel.innerHTML = `<i>${icon.name}</i>`;
-                }
-
-                function goTo(delta) {
-                    currentIndex = (currentIndex + delta + icons.length) % icons.length;
-                    render();
-                }
-
-                function setupHoldScroll(btn, delta) {
-                    let timeout;
-                    let interval;
-                    let speed = 360;
-                    const minSpeed = 60;
-                    const acceleration = 0.84;
-
-                    function step() {
-                        goTo(delta);
-                        speed = Math.max(minSpeed, speed * acceleration);
-                        interval = setTimeout(step, speed);
-                    }
-
-                    function start() {
-                        goTo(delta);
-                        timeout = setTimeout(() => {
-                            step();
-                        }, 400);
-                    }
-
-                    function stop() {
-                        clearTimeout(timeout);
-                        clearTimeout(interval);
-                        speed = 300;
-                    }
-
-                    btn.addEventListener('mousedown', start);
-                    btn.addEventListener('touchstart', (e) => { e.preventDefault(); start(); }, { passive: false });
-                    btn.addEventListener('mouseup', stop);
-                    btn.addEventListener('mouseleave', stop);
-                    btn.addEventListener('touchend', stop);
-                    btn.addEventListener('touchcancel', stop);
-                }
-
-                setupHoldScroll(prevBtn, -1);
-                setupHoldScroll(nextBtn, 1);
-
-                render();
-            }
-
-            async function loadIcons() {
-                let response;
-                try {
-                    response = await fetch(ICONS_PATH);
-                } catch (err) {
-                    console.error('Failed to fetch wallet_icons.txt. Requires http(s), not file://.', err);
-                    return;
-                }
-
-                if (!response.ok) {
-                    console.error(`Failed to load wallet_icons.txt: ${response.status} ${response.statusText}`);
-                    return;
-                }
-
-                const text = await response.text();
-                const icons = sortIconsAlphabetically(parseIcons(text));
-
-                if (icons.length === 0) {
-                    console.error('No icons parsed from wallet_icons.txt.');
-                    return;
-                }
-
-                initIconSelector(icons);
-            }
-
-            document.addEventListener('DOMContentLoaded', loadIcons);
-        })();
-    </script>
-
-    <!-- Form navigation -->
-    <script>
-        (function () {
-            const landing     = document.querySelector('.landing');
-            const form        = document.getElementById('createForm');
-            const walletReady = document.querySelector('.wallet-ready');
-            const questions   = Array.from(form.querySelectorAll('.form-question'));
-            const createBtn   = document.getElementById('createWalletBtn');
-            const cancelBtn   = document.getElementById('cancelBtn');
-            const backBtn     = document.getElementById('backBtn');
-            const continueBtn = document.getElementById('continueBtn');
-
-            let current = 0;
-
-            form.addEventListener('submit', (e) => e.preventDefault());
-
-            function canProceed(index) {
-                switch (index) {
-                    case 0: return document.getElementById('wname').value.trim() !== '';
-                    case 1: return true;
-                    case 2: return form.querySelector('input[name="color"]:checked') !== null;
-                    default: return false;
-                }
-            }
-
-            function triggerShake() {
-                const q = questions[current];
-                q.classList.remove('shake');
-                void q.offsetWidth;
-                q.classList.add('shake');
-                q.addEventListener('animationend', () => q.classList.remove('shake'), { once: true });
-            }
-
-            function goTo(index) {
-                questions[current].classList.remove('active');
-                current = index;
-                questions[current].classList.add('active');
-
-                cancelBtn.style.display = current === 0 ? '' : 'none';
-                backBtn.style.display   = current > 0   ? '' : 'none';
-            }
-
-            createBtn.addEventListener('click', () => {
-                landing.style.display = 'none';
-                form.style.display = '';
-            });
-
-            cancelBtn.addEventListener('click', () => {
-                form.style.display = 'none';
-                landing.style.display = '';
-            });
-
-            backBtn.addEventListener('click', () => {
-                if (current > 0) goTo(current - 1);
-            });
-
-            continueBtn.addEventListener('click', () => {
-                if (!canProceed(current)) { triggerShake(); return; }
-                if (current < questions.length - 1) {
-                    goTo(current + 1);
-                } else {
-                    form.style.display = 'none';
-                    walletReady.style.display = '';
-                }
-            });
-
-            document.getElementById('wname').addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    continueBtn.click();
-                }
-            });
-
-            goTo(0);
-        })();
-    </script>
 </body>
 </html>
