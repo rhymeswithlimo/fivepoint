@@ -92,6 +92,28 @@ func truncate(b []byte) string {
 	return string(b)
 }
 
+// httpPostText posts a plain-text body and returns the trimmed text response
+// (used to broadcast a raw BTC transaction to Esplora /tx, which returns a txid).
+func httpPostText(ctx context.Context, url, body string) (string, error) {
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, url, bytes.NewReader([]byte(body)))
+	if err != nil {
+		return "", err
+	}
+	req.Header.Set("Content-Type", "text/plain")
+	req.Header.Set("User-Agent", userAgent)
+
+	resp, err := (&http.Client{Timeout: 20 * time.Second}).Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+	data, _ := io.ReadAll(io.LimitReader(resp.Body, 1<<20))
+	if resp.StatusCode != http.StatusOK {
+		return "", fmt.Errorf("POST %s: http %d: %s", url, resp.StatusCode, truncate(data))
+	}
+	return string(bytes.TrimSpace(data)), nil
+}
+
 // httpGetJSON is a small helper for REST endpoints (used for BTC, whose balances
 // come from an indexer/explorer rather than a node RPC).
 func httpGetJSON(ctx context.Context, url string, out any) error {
