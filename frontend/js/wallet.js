@@ -325,6 +325,109 @@
     resetIdleTimer();
 })();
 
+/* ----------  Send flow (compose -> confirm -> result)  ---------- */
+(function () {
+    document.addEventListener('DOMContentLoaded', () => {
+        const walletId = new URLSearchParams(window.location.search).get('id') || '';
+        const modal = document.getElementById('sendModal');
+        if (!modal) return;
+
+        const steps = {
+            form: document.getElementById('sendStepForm'),
+            confirm: document.getElementById('sendStepConfirm'),
+            result: document.getElementById('sendStepResult'),
+        };
+        const assetSel = document.getElementById('sendAsset');
+        const toInput = document.getElementById('sendTo');
+        const amountInput = document.getElementById('sendAmount');
+        const errorEl = document.getElementById('sendError');
+        const netEl = document.getElementById('sendNetwork');
+        const confirmList = document.getElementById('confirmList');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultBody = document.getElementById('resultBody');
+
+        let preview = null;
+
+        function showStep(name) {
+            Object.entries(steps).forEach(([k, el]) => el.classList.toggle('hidden', k !== name));
+        }
+        function setError(msg) {
+            errorEl.textContent = msg || '';
+            errorEl.classList.toggle('hidden', !msg);
+        }
+
+        function assetSymbols() {
+            const syms = [];
+            document.querySelectorAll('.holdings-assets .asset .asset-info:first-child p:first-child')
+                .forEach((p) => { if (p.textContent) syms.push(p.textContent.trim()); });
+            return syms.length ? syms : ['SOL', 'ETH', 'BTC', 'XRP'];
+        }
+
+        function open() {
+            setError('');
+            assetSel.innerHTML = '';
+            assetSymbols().forEach((s) => {
+                const o = document.createElement('option');
+                o.value = s; o.textContent = s;
+                assetSel.appendChild(o);
+            });
+            toInput.value = '';
+            amountInput.value = '';
+            netEl.textContent = '';
+            showStep('form');
+            modal.classList.remove('hidden');
+        }
+        function close() {
+            if (preview) { FP.api.cancelSend(preview.prepareId).catch(() => {}); preview = null; }
+            modal.classList.add('hidden');
+        }
+
+        document.getElementById('transferBtn').addEventListener('click', open);
+        document.getElementById('sendCancel').addEventListener('click', close);
+        document.getElementById('sendDone').addEventListener('click', close);
+        modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+        document.getElementById('sendBack').addEventListener('click', () => { setError(''); showStep('form'); });
+
+        document.getElementById('sendReview').addEventListener('click', async () => {
+            setError('');
+            const review = document.getElementById('sendReview');
+            review.disabled = true;
+            try {
+                preview = await FP.api.prepareSend(walletId, assetSel.value, toInput.value.trim(), amountInput.value.trim());
+                netEl.textContent = preview.network + ' network';
+                confirmList.innerHTML =
+                    `<dt>Network</dt><dd>${preview.network}</dd>` +
+                    `<dt>Asset</dt><dd>${preview.chain}</dd>` +
+                    `<dt>To</dt><dd>${preview.to}</dd>` +
+                    `<dt>Amount</dt><dd>${preview.amount} ${preview.chain}</dd>` +
+                    `<dt>Network fee</dt><dd>${preview.fee} ${preview.chain}</dd>`;
+                showStep('confirm');
+            } catch (err) {
+                setError((err && err.message) ? err.message.toLowerCase() : 'could not prepare transaction');
+            } finally {
+                review.disabled = false;
+            }
+        });
+
+        document.getElementById('sendConfirm').addEventListener('click', async () => {
+            const confirm = document.getElementById('sendConfirm');
+            confirm.disabled = true;
+            try {
+                const txid = await FP.api.confirmSend(preview.prepareId);
+                preview = null;
+                resultTitle.textContent = 'Sent';
+                resultBody.innerHTML = `<span class="value-up">✓ broadcast</span><br><span class="text-muted">${txid}</span>`;
+            } catch (err) {
+                resultTitle.textContent = 'Failed';
+                resultBody.innerHTML = `<span class="value-down">${(err && err.message) ? err.message : 'send failed'}</span>`;
+            } finally {
+                confirm.disabled = false;
+                showStep('result');
+            }
+        });
+    });
+})();
+
 /* ----------  Back navigation  ---------- */
 (function () {
     document.addEventListener('DOMContentLoaded', () => {

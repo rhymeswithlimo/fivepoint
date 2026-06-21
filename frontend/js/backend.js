@@ -31,6 +31,9 @@ FP.api = (function () {
             revealSeed: (id, passphrase) => A.RevealSeed(id, passphrase),
             overview: () => A.Overview(),
             walletPortfolio: (id) => A.WalletPortfolio(id),
+            prepareSend: (walletId, symbol, to, amount) => A.PrepareSend(walletId, symbol, to, amount),
+            confirmSend: (prepareId) => A.ConfirmSend(prepareId),
+            cancelSend: (prepareId) => A.CancelSend(prepareId),
         };
     }
 
@@ -114,6 +117,17 @@ FP.api = (function () {
                 return ok(s.wallets);
             },
             revealSeed: () => ok('demo only — real backend re-authenticates and returns the seed'),
+            prepareSend: (walletId, symbol, to, amount) => {
+                if (!read() || !isUnlocked()) return fail('locked');
+                if (!to) return fail('enter a recipient address');
+                if (!(parseFloat(amount) > 0)) return fail('enter an amount');
+                return ok({
+                    prepareId: rand(8), chain: symbol, network: 'testnet',
+                    from: 'demo' + rand(4), to, amount, fee: '0.000005',
+                });
+            },
+            confirmSend: () => ok('demo-txid-' + rand(8)),
+            cancelSend: () => ok(),
             overview: () => {
                 const s = read();
                 if (!s || !isUnlocked()) return fail("locked");

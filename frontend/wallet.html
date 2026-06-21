@@ -70,5 +70,45 @@
             <p class="text-muted monospace">Transaction history is coming soon.</p>
         </div>
     </section>
+
+    <!-- SEND MODAL -->
+    <div class="modal-backdrop hidden" id="sendModal">
+        <div class="modal-panel">
+            <!-- Step 1: compose -->
+            <div id="sendStepForm">
+                <p class="form-question-label unselectable">Send Funds</p>
+                <p class="send-network monospace" id="sendNetwork"></p>
+                <label class="form-question-label" for="sendAsset">Asset</label>
+                <select id="sendAsset" class="form-text-input"></select>
+                <label class="form-question-label" for="sendTo">Recipient Address</label>
+                <input type="text" id="sendTo" class="form-text-input" autocomplete="off" spellcheck="false" placeholder="paste address">
+                <label class="form-question-label" for="sendAmount">Amount</label>
+                <input type="text" id="sendAmount" class="form-text-input" autocomplete="off" inputmode="decimal" placeholder="0.0">
+                <p class="form-error hidden" id="sendError"></p>
+                <div class="bracket-buttons modal-actions">
+                    <button type="button" class="text-muted" id="sendCancel">[cancel]</button>
+                    <button type="button" class="text-muted" id="sendReview">[review]</button>
+                </div>
+            </div>
+            <!-- Step 2: confirm -->
+            <div id="sendStepConfirm" class="hidden">
+                <p class="form-question-label unselectable">Confirm Transfer</p>
+                <dl class="confirm-list monospace" id="confirmList"></dl>
+                <p class="seed-warning unselectable">Transactions are irreversible. Check the address and amount carefully.</p>
+                <div class="bracket-buttons modal-actions">
+                    <button type="button" class="text-muted" id="sendBack">[back]</button>
+                    <button type="button" class="action-accept" id="sendConfirm">[confirm &amp; send]</button>
+                </div>
+            </div>
+            <!-- Step 3: result -->
+            <div id="sendStepResult" class="hidden">
+                <p class="form-question-label unselectable" id="resultTitle">Sent</p>
+                <p class="monospace" id="resultBody"></p>
+                <div class="bracket-buttons modal-actions">
+                    <button type="button" class="text-muted" id="sendDone">[done]</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

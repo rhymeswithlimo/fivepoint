@@ -238,3 +238,68 @@
     margin-left: auto;
     color: var(--muted);
 }
+
+/* ====================  SEND MODAL  ==================== */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sidepadding);
+
+    background-color: hsl(from var(--strong) h s l / 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.modal-panel {
+    width: 100%;
+    max-width: 380px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background-color: #111;
+    border: 1px solid hsl(from var(--contrast) h s l / 0.12);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.modal-panel > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-panel select.form-text-input {
+    cursor: pointer;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    padding-top: 6px;
+}
+
+.send-network {
+    font-size: 12px;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-top: -4px;
+}
+
+.confirm-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 12px;
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.confirm-list dt { color: var(--muted); }
+.confirm-list dd { margin: 0; text-align: right; word-break: break-all; }
